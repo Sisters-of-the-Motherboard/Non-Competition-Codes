@@ -1,0 +1,30 @@
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+@Autonomous
+public class SpinArt extends LinearOpMode {
+
+    private ElapsedTime runtime = new ElapsedTime();
+    HardwareMap hwMap = null;
+  public DcMotor spinMotor = null;
+
+    @Override
+    public void runOpMode() {
+       spinMotor = hwMap.dcMotor.get("SpinMotor");
+
+        waitForStart();
+        runtime.reset();
+
+        // run until the end of the match (driver presses STOP)
+        while (opModeIsActive()) {
+            spinMotor.setPower(1.0);
+
+            sleep(30000);
+
+            spinMotor.setPower(0.0);
+                    }
+    }
+}
